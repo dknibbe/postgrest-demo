@@ -1,0 +1,52 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready --username=postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  rest:
+    image: postgrest/postgrest
+    ports:
+      - 3000:3000
+    environment:
+      - PGRST_DB_URI=postgres://postgres:${DB_PASSWORD}@db:5432/postgres
+      - PGRST_DB_SCHEMAS=api
+      - PGRST_DB_ANON_ROLE=web_anon
+      - PGRST_OPENAPI_MODE=ignore-privileges
+      - PGRST_JWT_SECRET=${PGRST_JWT_SECRET}
+      - PGRST_JWT_ROLE_CLAIM_KEY=.resource_access.app.roles[0]
+      - PGRST_LOG_LEVEL=info
+    depends_on:
+      db:
+        condition: service_healthy
+
+  migration:
+    build: db/.
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./db/migrations:/migrations
+    environment:
+      - DB_URI=postgres://postgres:${DB_PASSWORD}@db:5432/postgres
+      - TARGET_VERSION=${TARGET_VERSION}
+
+  auth:
+    image: quay.io/keycloak/keycloak
+    ports:
+      - 8080:8080
+    environment:
+      - KEYCLOAK_ADMIN=${KEYCLOAK_ADMIN}
+      - KEYCLOAK_ADMIN_PASSWORD=${KEYCLOAK_ADMIN_PASSWORD}
+    command: start-dev
+    volumes:
+      - ./data:/opt/keycloak/data
