@@ -35,7 +35,7 @@ Ich habe die meiste Erfahrung im Bereich der C++ Backendentwicklung.
 # Motivation
 
 - Datenmodell ein mal entwerfen
-  - Single Source of truth
+  - Single Source of Truth
 - Es ist kein weiterer Code notwendig
   - Kein ORM, kein prozeduraler Code
   - Weniger Code, weniger Fehler
