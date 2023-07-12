@@ -36,11 +36,13 @@ curl --location 'http://0.0.0.0:3000/todos' \
 --data '[
     {
         "user_id": "8258e632-9aa1-472d-bb20-7118564685d5",
-        "task": "Go Cycling"
+        "task": "Go Cycling",
+        "done": false
     },
     {
         "user_id": "8258e632-9aa1-472d-bb20-7118564685d5",
-        "task": "Plan your vacation"
+        "task": "Plan your vacation",
+        "done": false
     },
     {
         "user_id": "8258e632-9aa1-472d-bb20-7118564685d5",
