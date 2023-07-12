@@ -181,7 +181,7 @@ rest:
 
 # Out of the Box
 
-![height:500](PostmanOpenAPI.png "OpenAPI")
+![height:550](PostmanOpenAPI.png "OpenAPI")
 
 ---
 
