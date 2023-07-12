@@ -292,5 +292,6 @@ Github: [https://github.com/PostgREST/postgrest](https://github.com/PostgREST/po
 # Vielen Dank
 
 Die Folien und die Demo sind auf github.
+https://github.com/dknibbe/postgrest-demo
 
 <!-- TODO: Link/QR Code zum Repo -->

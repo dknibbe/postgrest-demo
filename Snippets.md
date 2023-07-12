@@ -41,6 +41,11 @@ curl --location 'http://0.0.0.0:3000/todos' \
     {
         "user_id": "8258e632-9aa1-472d-bb20-7118564685d5",
         "task": "Plan your vacation"
+    },
+    {
+        "user_id": "8258e632-9aa1-472d-bb20-7118564685d5",
+        "task": "Create Slides",
+        "done": true
     }
 ]'
 ```
@@ -49,5 +54,12 @@ curl --location 'http://0.0.0.0:3000/todos' \
 
 ```bash
 curl --location 'http://0.0.0.0:3000/todos' \
---header 'Accept: application/json'``
+--header 'Accept: application/json'
+```
+
+### Get done tasks
+
+```bash
+curl --location 'http://0.0.0.0:3000/todos?done=eq.true' \
+--header 'Accept: application/json'
 ```
